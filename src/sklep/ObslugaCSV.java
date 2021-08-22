@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ObslugaCSV {
 			String linia;
 			while((linia = in.readLine()) != null) {
 				String[] t = linia.split(SEP);
-				Produkt p = new Produkt(Integer.parseInt(t[0]), t[1], Float.parseFloat(t[2]));
+				Produkt p = new Produkt(Integer.parseInt(t[0]), t[1], new BigDecimal(t[2]));
 				lista.add(p);
 			}
 		} catch (IOException e) {

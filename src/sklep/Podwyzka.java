@@ -18,9 +18,9 @@ public class Podwyzka {
 		
 		List<Produkt> lista = ObslugaCSV.odczytaj(wejscie);
 		
-		float podwyzka = Float.parseFloat(JOptionPane.showInputDialog("Podaj procent podwyżki"));
+		double podwyzka = Double.parseDouble(JOptionPane.showInputDialog("Podaj procent podwyżki"));
 		for (Produkt produkt : lista) {
-			produkt.setCena(produkt.getCena() * (1 + podwyzka / 100F));
+			produkt.podwyzka(podwyzka);
 		}
 		
 		int coSieStalo2 = chooser.showSaveDialog(null);
