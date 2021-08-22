@@ -1,16 +1,21 @@
 package sklep;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Produkt {
 	private int id;
 	private String nazwa;
-	private float cena;
+	private BigDecimal cena;
 	
-	public Produkt(int id, String nazwa, float cena) {
+	public Produkt(int id, String nazwa, BigDecimal cena) {
 		this.id = id;
 		this.nazwa = nazwa;
 		this.cena = cena;
+	}
+
+	public Produkt(int id, String nazwa, int cena) {
+		this(id, nazwa, BigDecimal.valueOf(cena));
 	}
 
 	public int getId() {
@@ -29,11 +34,11 @@ public class Produkt {
 		this.nazwa = nazwa;
 	}
 
-	public float getCena() {
+	public BigDecimal getCena() {
 		return cena;
 	}
 
-	public void setCena(float cena) {
+	public void setCena(BigDecimal cena) {
 		this.cena = cena;
 	}
 
@@ -56,8 +61,11 @@ public class Produkt {
 		if (getClass() != obj.getClass())
 			return false;
 		Produkt other = (Produkt) obj;
-		return Float.floatToIntBits(cena) == Float.floatToIntBits(other.cena) && id == other.id
-				&& Objects.equals(nazwa, other.nazwa);
+		return Objects.equals(cena, other.cena) && id == other.id && Objects.equals(nazwa, other.nazwa);
 	}
-	
+
+	public void podwyzka(double podwyzka) {
+		this.cena = this.cena.multiply(BigDecimal.ONE.add(BigDecimal.valueOf(podwyzka / 100.0))).setScale(2);
+	}
+
 }
