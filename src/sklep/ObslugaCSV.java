@@ -2,8 +2,10 @@ package sklep;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +26,19 @@ public class ObslugaCSV {
 		return lista;
 	}
 	
+	public static void zapisz(List<Produkt> lista, String sciezka) {
+		try(PrintWriter out = new PrintWriter(sciezka)) {
+			for (Produkt p : lista) {
+				out.print(p.getId());
+				out.print(";");
+				out.print(p.getNazwa());
+				out.print(";");
+				out.print(p.getCena());
+				out.println();
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
