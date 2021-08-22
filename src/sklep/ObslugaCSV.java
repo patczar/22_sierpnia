@@ -12,8 +12,12 @@ import java.util.List;
 public class ObslugaCSV {
 	
 	public static List<Produkt> odczytaj(String sciezka) {
+		return odczytaj(new File(sciezka));
+	}
+
+	public static List<Produkt> odczytaj(File plik) {
 		List<Produkt> lista = new ArrayList<>();
-		try(BufferedReader in = new BufferedReader(new FileReader(new File(sciezka)))) {
+		try(BufferedReader in = new BufferedReader(new FileReader(plik))) {
 			String linia;
 			while((linia = in.readLine()) != null) {
 				String[] t = linia.split(";");
@@ -27,7 +31,11 @@ public class ObslugaCSV {
 	}
 	
 	public static void zapisz(List<Produkt> lista, String sciezka) {
-		try(PrintWriter out = new PrintWriter(sciezka)) {
+		zapisz(lista, new File(sciezka));
+	}
+	
+	public static void zapisz(List<Produkt> lista, File plik) {
+		try(PrintWriter out = new PrintWriter(plik)) {
 			for (Produkt p : lista) {
 				out.print(p.getId());
 				out.print(";");
