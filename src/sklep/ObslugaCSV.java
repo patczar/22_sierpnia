@@ -11,6 +11,8 @@ import java.util.List;
 
 public class ObslugaCSV {
 	
+	private static final String SEP = ";";
+
 	public static List<Produkt> odczytaj(String sciezka) {
 		return odczytaj(new File(sciezka));
 	}
@@ -20,7 +22,7 @@ public class ObslugaCSV {
 		try(BufferedReader in = new BufferedReader(new FileReader(plik))) {
 			String linia;
 			while((linia = in.readLine()) != null) {
-				String[] t = linia.split(";");
+				String[] t = linia.split(SEP);
 				Produkt p = new Produkt(Integer.parseInt(t[0]), t[1], Float.parseFloat(t[2]));
 				lista.add(p);
 			}
@@ -38,9 +40,9 @@ public class ObslugaCSV {
 		try(PrintWriter out = new PrintWriter(plik)) {
 			for (Produkt p : lista) {
 				out.print(p.getId());
-				out.print(";");
+				out.print(SEP);
 				out.print(p.getNazwa());
-				out.print(";");
+				out.print(SEP);
 				out.print(p.getCena());
 				out.println();
 			}
