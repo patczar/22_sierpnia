@@ -1,14 +1,12 @@
 package hello;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 public class Hello {
 
 	public static void main(String[] args) {
 		System.out.println("Hello world!");
-		System.out.println("Teraz jest godzina " + LocalTime.now());
-		System.out.println("A tak w ogóle, to dzisiaj jest " + LocalDate.now());
+		System.out.println("Pełna informacdja o dacie i czasie: " + ZonedDateTime.now());
 	}
 
 }
